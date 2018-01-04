@@ -38,7 +38,8 @@ exit
 kubectl create -f ./kubernetes/mongodb/mongo.yaml
 kubectl create -f ./kubernetes/mS/product.yaml
 
-#use this command to test your services from a rest client like postman:
+#use this command to get url to test your services from a rest client like postman:
+
 minikube service eshop-product-ms-external --url
 
 
