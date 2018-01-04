@@ -1,0 +1,70 @@
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: mongodb-storage
+# spec:
+#   capacity:
+#     storage: 5Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   persistentVolumeReclaimPolicy: Retain
+#   storageClassName: standard
+#   hostPath:
+#       path: /repos/mongodb
+# ---
+apiVersion: v1
+kind: Service
+metadata:
+   name: eshop-mongodb
+   labels:
+     run: eshop-mongodb
+spec:
+   ports:
+   - port: 27017
+     targetPort: 27017
+     protocol: TCP
+   selector:
+     run: eshop-mongodb
+---
+apiVersion: v1
+kind: Service
+metadata:
+   name: eshop-mongodb-external
+   labels:
+     run: eshop-mongodb-external
+spec:
+  type: NodePort
+  ports:
+  - port: 27017
+    targetPort: 27017
+    protocol: TCP
+  selector:
+    run: eshop-mongodb
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: eshop-mongodb
+spec:
+  template:
+    metadata:
+      labels:
+        run: eshop-mongodb
+    spec:
+      containers:
+      - name: eshop-mongodb
+        image: mongo:3.0.15-wheezy
+#        command:
+#          - "--smallfiles"
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - mountPath: /data/db
+          name: mongodb-volume
+      volumes:
+      - name: mongodb-volume
+        hostPath:
+          # directory location on host
+          path: /mnt/sda1/repos/mongodb
+          # this field is optional
+          type: Directory

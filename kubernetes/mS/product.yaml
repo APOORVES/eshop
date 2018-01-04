@@ -1,0 +1,68 @@
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: mongodb-storage
+# spec:
+#   capacity:
+#     storage: 5Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   persistentVolumeReclaimPolicy: Retain
+#   storageClassName: standard
+#   hostPath:
+#       path: /repos/mongodb
+# ---
+apiVersion: v1
+kind: Service
+metadata:
+   name: eshop-product-ms
+   labels:
+     run: eshop-product-ms
+spec:
+   ports:
+   - port: 7001
+     targetPort: 7001
+     protocol: TCP
+   selector:
+     run: eshop-product-ms
+---
+apiVersion: v1
+kind: Service
+metadata:
+   name: eshop-product-ms-external
+   labels:
+     run: eshop-product-ms-external
+spec:
+  type: NodePort
+  ports:
+  - port: 7001
+    targetPort: 7001
+    protocol: TCP
+  selector:
+    run: eshop-product-ms
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: eshop-product-ms
+spec:
+  template:
+    metadata:
+      labels:
+        run: eshop-product-ms
+    spec:
+      containers:
+      - name: eshop-product-ms
+        image: apoorves/eshop-product-ms:latest
+        ports:
+        - containerPort: 7001
+        volumeMounts:
+        - mountPath: /repos/logs
+          name: mongodb-volume
+      volumes:
+      - name: mongodb-volume
+        hostPath:
+          # directory location on host
+          path: /mnt/sda1/repos/logs
+          # this field is optional
+          type: Directory
