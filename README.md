@@ -1,9 +1,9 @@
 # eshop
-This is a reference implementation of an online shopping application using micro services concepts and popular technologies
+This is a reference implementation of an online shopping application using micro services concepts and its popular technologies - spring boot, docker, kubernetes, mongodb
 
 
 
-#Following configuration in the settings.xml file to enable your docker hub user id password in maven setttings
+#Put Following configuration in the settings.xml file to enable your docker hub user id password in maven setttings
 
 <server>
   <id>docker-hub</id>
@@ -14,15 +14,15 @@ This is a reference implementation of an online shopping application using micro
   </configuration>
 </server>
 
-# build product mS using the following maven command and push the image to docker hub. Remember to change the dockerhub user to your own dockerhub user
+#build product mS using the following maven command and push the image to docker hub. Remember to change the dockerhub user to your own dockerhub user
 mvn clean install -X docker:build -DpushImage
 
 
-# if you home directory doesnt have enough space you can point minkube to a different directory by setting this environment variable before starting minikube
+#if you home directory doesnt have enough space you can point minkube to a different directory by setting this environment variable before starting minikube
 
 export MINIKUBE_HOME=/extras/minikube
 
-# start minikube with this command and allocate enought disk space
+#start minikube with this command and allocate enought disk space
 sudo minikube start --disk-size 100g
 
 
@@ -43,7 +43,7 @@ exit
 #
 
 
-# run following commands to create kubernetes deployment, service and pods for product service and mongodb
+#run following commands to create kubernetes deployment, service and pods for product service and mongodb
 kubectl create -f ./kubernetes/mongodb/mongo.yaml
 kubectl create -f ./kubernetes/mS/product.yaml
 
