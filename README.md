@@ -1,4 +1,4 @@
-# eshop
+# eshop - A micro services reference implementation
 This is a reference implementation of an online shopping application using micro services concepts and its popular technologies - spring boot, docker, kubernetes, mongodb. This in its current shape will run following containers (built via docker) in kubernetes pods as deployments and services:
 1. mongodb
 2. REST service built in springboot for crud operations over product datalog of eshop
