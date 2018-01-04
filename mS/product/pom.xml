@@ -31,12 +31,10 @@
 			<artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
 			<version>3.1.11</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -72,6 +70,10 @@
 			           <imageTag>${project.version}</imageTag>
 			           <imageTag>latest</imageTag>
 			        </imageTags>
+<!-- 			        <env>
+						<PRODUCT_POD_NAME>${PRODUCT_POD_NAME}</PRODUCT_POD_NAME>			        	
+			        	<ENV_1>PRODUCT_POD_NAME=${ENV2}</ENV_1>
+			        </env> -->
 			        <resources>
 			           <resource>
 			             <targetPath>/</targetPath>

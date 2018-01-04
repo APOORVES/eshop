@@ -59,6 +59,11 @@ spec:
         volumeMounts:
         - mountPath: /repos/logs
           name: mongodb-volume
+        env:
+          - name: PRODUCT_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
       volumes:
       - name: mongodb-volume
         hostPath:
