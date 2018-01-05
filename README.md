@@ -19,9 +19,9 @@ This is a reference implementation of an online shopping application using micro
 #build product mS using the following maven command and push the image to docker hub. Remember to change the dockerhub user to your own dockerhub user
 mvn clean install -X docker:build -DpushImage
 
-#if you home directory doesnt have enough space you can point minkube to a different directory by setting this environment variable before starting minikube
+#if you home directory doesnt have enough space you can point minkube to a different directory by setting this environment variable before starting minikube (This step is optional)
 
-export MINIKUBE_HOME=/extras/minikube
+export MINIKUBE_HOME=/extras/minikube #(Diretory of your choice where extra sapce is available)
 
 #start minikube with this command and allocate enought disk space
 sudo minikube start --disk-size 100g
