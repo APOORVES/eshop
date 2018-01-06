@@ -10,7 +10,7 @@ public class Product
 {
 
 	@Id
-	private long productId;
+	private String productId;
 	private String description;
 	private long quantityInStock;
 	private HashMap<String, String> attributes;
@@ -18,11 +18,11 @@ public class Product
 	
 	
 	
-	public long getProductId() 
+	public String getProductId() 
 	{
 		return productId;
 	}
-	public void setProductId(long productId) 
+	public void setProductId(String productId) 
 	{
 		this.productId = productId;
 	}
