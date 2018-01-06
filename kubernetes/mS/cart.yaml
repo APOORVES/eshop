@@ -1,0 +1,73 @@
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: mongodb-storage
+# spec:
+#   capacity:
+#     storage: 5Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   persistentVolumeReclaimPolicy: Retain
+#   storageClassName: standard
+#   hostPath:
+#       path: /repos/mongodb
+# ---
+apiVersion: v1
+kind: Service
+metadata:
+   name: eshop-cart-ms
+   labels:
+     run: eshop-cart-ms
+spec:
+   ports:
+   - port: 7002
+     targetPort: 7002
+     protocol: TCP
+   selector:
+     run: eshop-cart-ms
+---
+apiVersion: v1
+kind: Service
+metadata:
+   name: eshop-cart-ms-external
+   labels:
+     run: eshop-cart-ms-external
+spec:
+  type: NodePort
+  ports:
+  - port: 7002
+    targetPort: 7002
+    protocol: TCP
+  selector:
+    run: eshop-cart-ms
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: eshop-cart-ms
+spec:
+  template:
+    metadata:
+      labels:
+        run: eshop-cart-ms
+    spec:
+      containers:
+      - name: eshop-cart-ms
+        image: apoorves/eshop-cart-ms:latest
+        ports:
+        - containerPort: 7002
+        volumeMounts:
+        - mountPath: /repos/logs
+          name: cart-ms-logs-volume
+        env:
+          - name: PRODUCT_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+      volumes:
+      - name: cart-ms-logs-volume
+        hostPath:
+          # directory location on host
+          path: /mnt/sda1/repos/logs
+          # this field is optional
+          type: Directory

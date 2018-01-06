@@ -1,0 +1,22 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<root level="error">
+		<appender-ref ref="ERROR-LOG" />
+	</root>
+	<logger name="com.eshop." level="debug" additivity="false">
+		<appender-ref ref="DEBUG-LOG" />
+	</logger>
+	<appender name="DEBUG-LOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/repos/logs/product.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/repos/logs/product.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+</configuration> -->
