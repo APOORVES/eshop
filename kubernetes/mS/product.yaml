@@ -58,14 +58,14 @@ spec:
         - containerPort: 7001
         volumeMounts:
         - mountPath: /repos/logs
-          name: mongodb-volume
+          name: product-ms-logs-volume
         env:
           - name: PRODUCT_POD_NAME
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
       volumes:
-      - name: mongodb-volume
+      - name: product-ms-logs-volume
         hostPath:
           # directory location on host
           path: /mnt/sda1/repos/logs
