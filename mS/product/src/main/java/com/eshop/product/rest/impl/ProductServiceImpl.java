@@ -47,7 +47,6 @@ public class ProductServiceImpl implements ProductService
 	@Path("/getAll")
 	@GET
 	@POST
-	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	@Produces({MediaType.APPLICATION_JSON})
 	@Override
 	public List<Product> getProductsAll() 

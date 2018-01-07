@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.eshop.cart</groupId>
-	<artifactId>eshop-cart-ms</artifactId>
+	<groupId>com.eshop.payment</groupId>
+	<artifactId>eshop-payment-ms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>cart</name>
-	<description>cart micro service for eshop</description>
+	<name>payment</name>
+	<description>payment micro service for eshop</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -17,23 +17,16 @@
 		<version>1.5.9.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
-
 	<dependencies>
-
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
 			<version>3.1.11</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -45,11 +38,6 @@
 		    <artifactId>jackson-jaxrs-json-provider</artifactId>
 		    <version>2.9.3</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>com.spotify</groupId>
-			<artifactId>docker-maven-plugin</artifactId>
-			<version>0.4.9</version>
-		</dependency> -->
 		<dependency>
 		    <groupId>org.springframework.kafka</groupId>
 		    <artifactId>spring-kafka</artifactId>
@@ -76,8 +64,8 @@
 			           <imageTag>latest</imageTag>
 			        </imageTags>
 <!-- 			        <env>
-						<cart_POD_NAME>${cart_POD_NAME}</cart_POD_NAME>			        	
-			        	<ENV_1>cart_POD_NAME=${ENV2}</ENV_1>
+						<payment_POD_NAME>${payment_POD_NAME}</payment_POD_NAME>			        	
+			        	<ENV_1>payment_POD_NAME=${ENV2}</ENV_1>
 			        </env> -->
 			        <resources>
 			           <resource>

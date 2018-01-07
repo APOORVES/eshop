@@ -12,6 +12,8 @@ public class Cart
 	@Id
 	private String cartId;
 	private HashMap<String, Long> productsInCart;
+	private String cartStatus;
+	
 	public String getCartId() {
 		return cartId;
 	}
@@ -23,6 +25,12 @@ public class Cart
 	}
 	public void setProductsInCart(HashMap<String, Long> productsInCart) {
 		this.productsInCart = productsInCart;
+	}
+	public String getCartStatus() {
+		return cartStatus;
+	}
+	public void setCartStatus(String cartStatus) {
+		this.cartStatus = cartStatus;
 	} 
 	
 	

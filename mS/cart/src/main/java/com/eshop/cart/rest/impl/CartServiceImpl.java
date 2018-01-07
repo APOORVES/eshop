@@ -48,26 +48,26 @@ public class CartServiceImpl implements CartService
 	@Path("/getAll")
 	@GET
 	@POST
-	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
 	@Produces({MediaType.APPLICATION_JSON})
 	@Override
 	public List<Cart> getCartAll() 
 	{
-	    LOGGER.debug("/product/getAll called");		
+	    LOGGER.debug("/cart/getAll called");		
 	    return cartRepository.findAll();
 	}
 
 	@PUT
 	@Consumes({MediaType.APPLICATION_JSON})
 	@Override
-	public boolean updateCart(Cart cart) 
+	public Cart updateCart(Cart cart) 
 	{
 	    LOGGER.debug("/cart/update called with cart = {}", cart);		
-		boolean returnValue = false;
+	    if(cart!=null && cart.getCartId() == null)
+	    {
+	    	cart.setCartStatus("INPROGRESS");
+	    }
 		Cart returnedCart = cartRepository.save(cart);
-		if(returnedCart != null)
-			returnValue = true;
-		return returnValue;
+		return returnedCart;
 	}
 
 	@POST
@@ -76,7 +76,11 @@ public class CartServiceImpl implements CartService
 	@Override
 	public Cart addCart(Cart cart) 
 	{
-	    LOGGER.debug("/cart/add called with cart = {}", cart);		
+	    LOGGER.debug("/cart/add called with cart = {}", cart);
+	    if(cart!=null && cart.getCartId() == null)
+	    {
+	    	cart.setCartStatus("INPROGRESS");
+	    }
 		Cart returnedCart = cartRepository.save(cart);
 		return returnedCart;
 	}

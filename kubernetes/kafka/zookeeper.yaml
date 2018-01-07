@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+   name: eshop-zookeeper
+   labels:
+     run: eshop-zookeeper
+spec:
+   ports:
+   - port: 2181
+     targetPort: 2181
+     protocol: TCP
+     name: zookeeperport
+   selector:
+     run: eshop-zookeeper
+---
+apiVersion: v1
+kind: Service
+metadata:
+   name: eshop-zookeeper-external
+   labels:
+     run: eshop-zookeeper-external
+spec:
+  type: NodePort
+  ports:
+  - port: 2181
+    targetPort: 2181
+    protocol: TCP
+    name: zookeeperport
+  selector:
+    run: eshop-zookeeper
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: eshop-zookeeper
+spec:
+  template:
+    metadata:
+      labels:
+        run: eshop-zookeeper
+    spec:
+      containers:
+      - name: eshop-zookeeper
+        image: wurstmeister/zookeeper
+        ports:
+        - containerPort: 2181
+        
